@@ -1,0 +1,4 @@
+webdriver-manager>=2.4.0
+eyes-selenium>=5.5.0
+eyes-universal>=2.2.7
+selenium>=3.141.0
