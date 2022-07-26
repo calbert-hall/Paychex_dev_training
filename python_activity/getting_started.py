@@ -22,6 +22,7 @@ def set_up(eyes):
     # create a new batch info instance and set it to the configuration
     eyes.configure.set_batch(BatchInfo("Ultrafast Batch - Python"))
     eyes.configure.set_server_url("https://paychexeyes.applitools.com/")
+    eyes.configure.set_proxy()
 
     # Add browsers with different viewports
     # Add mobile emulation devices in Portrait mode

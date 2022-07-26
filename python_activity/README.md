@@ -1,4 +1,4 @@
-# Paychex Hackathon: Eyes Python Selenium Ultrafastgrid 
+# Paychex Dev Training Module: Eyes Python Selenium Ultrafast Ggit rid 
 
 ### 1. Pre-requisites:
 
@@ -18,11 +18,14 @@
 
 For additional info, see our official documentation here: https://applitools.com/docs/api/eyes-sdk/index-gen/classindex-selenium-python_sdk4.html
 
-### 3. Hackathon Activities: Selenium Python
-1. Open `applitools_activity.py` and set the API key and batch name as in steps 2 and 3 from #2. 
-2. Run `applitools_activity.py` by calling `pytest applitools_activity.py`.
-3. Create a layout region from the Applitools dashboard over the messages icon in the blue header on your tests. Enable Auto-maintenance to do this more quickly!
-4. Use the link from the menu to go to the company details, then take a screenshot of the company details page! 
+### 3. Dev Training Module Activities: Selenium Python
+1. Open `applitools_activity.py` and set the API key and batch name as in steps 2 and 3 from #2.
+2. Create an eyes.check call on the main Paychex Flex dashboard after the login window. 
+3. Run `applitools_activity.py` by calling `pytest applitools_activity.py`. *Note, you may need to run multiple times for the test to cache properly to capture the images*. 
+4. Create a layout region from the Applitools dashboard over the messages icon in the blue header on your tests. Enable Auto-maintenance to do this more quickly!
+5. Use the link from the menu to go to the company details, then take a screenshot of the company details page! 
 *Hint: I've made several helper functions to make this an easy process, please use them!*
-5. Place an Ignore region on the "Company Logo" portion of the company details page. 
-6. Implement a *coded region* in one of your `eyes.check` calls. 
+6. Place an Ignore region on the "Company Logo" portion of the company details page. 
+7. Implement a *coded region* in one of your `eyes.check` calls. 
+8. Navigate through the tabs on the company details page, and use eyes.check to capture these pages as well. 
+9. If you still have time, ask Casey for any additional tasks. 

@@ -29,7 +29,7 @@ username = "Applit465856618"
 password = "Test1234"
 
 # ChromeDriver Headless Mode
-HEADLESS = False
+HEADLESS = True
 ENV_URL = "https://myappsimpn.paychex.com/"
 
 
@@ -99,14 +99,17 @@ def login(web_driver, eyes):
 @pytest.fixture(name="eyes", scope="function")
 def set_up(runner):
     eyes = Eyes(runner)
-    # You can get your api key from the Applitools dashboard
+    # You can get your api key from the Applitools dashboard.
     eyes.configure.set_api_key(os.environ["APPLITOOLS_API_KEY"])
 
     # create a new batch info instance and set it to the configuration
-    eyes.configure.set_batch(BatchInfo("Hackathon Batch - Python"))
+    eyes.configure.set_batch(BatchInfo("Dev Training Solution - Python"))
     eyes.configure.set_layout_breakpoints(True)
 
-    eyes.configure.set_server_url("https://paychexeyes.applitools.com/")
+    #TODO uncomment
+    # eyes.configure.set_server_url("https://paychexeyes.applitools.com/")
+    # eyes.configure.set_server_url("https://service-outbound-par.paychex.com/pxt-applitools")
+
     # Add browsers with different viewports
     # Add mobile emulation devices in Portrait mode
     (
@@ -155,6 +158,7 @@ def runner_setup():
 def driver_setup():
     chrome_options = Options()
     chrome_options.headless = HEADLESS
+    chrome_options.add_argument("--disable-gpu")
 
     # Create a new chrome web driver
     web_driver = Chrome(ChromeDriverManager().install(), options=chrome_options)
@@ -183,6 +187,7 @@ def test_ultra_fast(web_driver, eyes):
         login(web_driver, eyes)
         print("Wait....")
         time.sleep(10)
+        explicitWait(".current-payroll-header-container", web_driver)
         print("Checking Main page....")
 
         eyes.check("Dashboard Region",

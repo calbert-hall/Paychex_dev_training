@@ -98,7 +98,8 @@ def login(web_driver, eyes):
 @pytest.fixture(name="eyes", scope="function")
 def set_up(runner):
     eyes = Eyes(runner)
-    # You can get your api key from the Applitools dashboard
+    # You can get your api key from the Applitools dashboard in the upper right.
+    #TODO set your API key here:
     eyes.configure.set_api_key(os.environ["APPLITOOLS_API_KEY"])
 
     # create a new batch info instance and set it to the configuration
@@ -106,7 +107,7 @@ def set_up(runner):
     eyes.configure.set_layout_breakpoints(True)
 
     # TODO ensure this is uncommented
-    eyes.configure.set_server_url("https://paychexeyes.applitools.com/")
+    eyes.configure.set_server_url("https://service-outbound-par.paychex.com/pxt-applitools")
     # Add browsers with different viewports
     # Add mobile emulation devices in Portrait mode
     (
