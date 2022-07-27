@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.9.1 on darwin)" generated="20220726 23:55:58.705" rpa="false" schemaversion="2">
+<suite id="s1" name="Activity Solution" source="/Users/casey/Desktop/Hackathons/PayChex/robot_activity/robotframework-quickstart/activity_solution.robot">
+<test id="s1-t1" name="Check Dashboard and Company Details">
+<kw name="Setup" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220726 23:55:59.830" level="INFO">Opening browser 'Chrome' to base url 'https://myappsimpn.paychex.com/'.</msg>
+<status status="PASS" starttime="20220726 23:55:59.830" endtime="20220726 23:56:03.131"/>
+</kw>
+<status status="PASS" starttime="20220726 23:55:59.829" endtime="20220726 23:56:03.131"/>
+</kw>
+<kw name="Login" library="PaychexLibrary">
+<msg timestamp="20220726 23:56:19.008" level="INFO">Logging in...
+
+Selector '#appPlaceHolder &gt; div.ng-scope &gt; div &gt; div.row &gt; div &gt; div &gt; button:nth-child(2)' did not load in '10' seconds...
+
+Finding continue button...
+
+Selector '#appPlaceHolder &gt; div &gt; div &gt; div &gt; div &gt; form &gt; div:nth-child(1) &gt; div:nth-child(2) &gt; div:nth-child(3) &gt; button:nth-child(2)' did not load in '10' seconds...
+
+Exception in Login: Object of type WebDriver is not JSON serializable</msg>
+<status status="PASS" starttime="20220726 23:56:03.132" endtime="20220726 23:56:19.008"/>
+</kw>
+<kw name="Eyes Open" library="EyesLibrary">
+<tag>Check flow</tag>
+<doc>Shared parameters section from `applitools.yaml` could be overwritten during `Eyes Open` call, see `Preconditions`.</doc>
+<status status="PASS" starttime="20220726 23:56:19.008" endtime="20220726 23:56:19.758"/>
+</kw>
+<kw name="Get WebElement" library="SeleniumLibrary">
+<var>${element}</var>
+<arg>id:appContainer</arg>
+<doc>Returns the first WebElement matching the given ``locator``.</doc>
+<msg timestamp="20220726 23:56:19.769" level="INFO">${element} = &lt;selenium.webdriver.remote.webelement.WebElement (session="d9c8b5a852ebf998733f0ef1e480f9ee", element="d81ce648-047d-4a8f-8b85-0ca4c060d30d")&gt;</msg>
+<status status="PASS" starttime="20220726 23:56:19.759" endtime="20220726 23:56:19.769"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>id:appContainer</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220726 23:56:19.769" endtime="20220726 23:56:19.786"/>
+</kw>
+<kw name="Eyes Check Region By Element" library="EyesLibrary">
+<arg>${element}</arg>
+<arg>Fully</arg>
+<tag>Allow to pass Check Settings keywords</tag>
+<tag>Check flow</tag>
+<doc>Check specified region by element</doc>
+<kw name="Fully" library="EyesLibrary">
+<arg>SeleniumCheckSettings(values=SeleniumCheckSettingsValues(target_region=None, timeout=-1, ignore_caret=None, stitch_content=None, match_level=None, name=None, send_dom=None, use_dom=None, enable_patterns=None, ignore_displacements=None, ignore_regions=[], layout_regions=[], strict_regions=[], content_regions=[], floating_regions=[], accessibility_regions=[], variation_group_id=None, wait_before_capture=None, scroll_root_locator=None, target_locator=TargetPath.region(&lt;selenium.webdriver.remote.webelement.WebElement (session="d9c8b5a852ebf998733f0ef1e480f9ee", element="d81ce648-047d-4a8f-8b85-0ca4c060d30d")&gt;), frame_chain=[], script_hooks={}, visual_grid_options=(), disable_browser_fetching=None, ocr_region=None, layout_breakpoints=None, lazy_load=None), _region=None, _frame=None)</arg>
+<tag>Check Settings keyword</tag>
+<doc>Returns a CheckSettings object specified fully.</doc>
+<status status="PASS" starttime="20220726 23:56:19.788" endtime="20220726 23:56:19.788"/>
+</kw>
+<status status="PASS" starttime="20220726 23:56:19.787" endtime="20220726 23:56:24.293"/>
+</kw>
+<kw name="Select Menu Button" library="PaychexLibrary">
+<status status="PASS" starttime="20220726 23:56:24.293" endtime="20220726 23:56:24.420"/>
+</kw>
+<kw name="Go To Company Details" library="PaychexLibrary">
+<status status="PASS" starttime="20220726 23:56:24.421" endtime="20220726 23:56:29.315"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>id:appContainer</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220726 23:56:29.316" endtime="20220726 23:56:29.341"/>
+</kw>
+<kw name="Eyes Check Region By Element" library="EyesLibrary">
+<arg>${element}</arg>
+<arg>Fully</arg>
+<tag>Allow to pass Check Settings keywords</tag>
+<tag>Check flow</tag>
+<doc>Check specified region by element</doc>
+<kw name="Fully" library="EyesLibrary">
+<arg>SeleniumCheckSettings(values=SeleniumCheckSettingsValues(target_region=None, timeout=-1, ignore_caret=None, stitch_content=None, match_level=None, name=None, send_dom=None, use_dom=None, enable_patterns=None, ignore_displacements=None, ignore_regions=[], layout_regions=[], strict_regions=[], content_regions=[], floating_regions=[], accessibility_regions=[], variation_group_id=None, wait_before_capture=None, scroll_root_locator=None, target_locator=TargetPath.region(&lt;selenium.webdriver.remote.webelement.WebElement (session="d9c8b5a852ebf998733f0ef1e480f9ee", element="d81ce648-047d-4a8f-8b85-0ca4c060d30d")&gt;), frame_chain=[], script_hooks={}, visual_grid_options=(), disable_browser_fetching=None, ocr_region=None, layout_breakpoints=None, lazy_load=None), _region=None, _frame=None)</arg>
+<tag>Check Settings keyword</tag>
+<doc>Returns a CheckSettings object specified fully.</doc>
+<status status="PASS" starttime="20220726 23:56:29.343" endtime="20220726 23:56:29.344"/>
+</kw>
+<status status="PASS" starttime="20220726 23:56:29.342" endtime="20220726 23:56:32.363"/>
+</kw>
+<kw name="Eyes Close Async" library="EyesLibrary">
+<tag>Check flow</tag>
+<doc>Closes a session and returns the results of the session.
+If a test is running, aborts it. Otherwise, does nothing.</doc>
+<status status="PASS" starttime="20220726 23:56:32.363" endtime="20220726 23:56:32.364"/>
+</kw>
+<kw name="Teardown" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20220726 23:56:32.365" endtime="20220726 23:56:32.609"/>
+</kw>
+<kw name="Eyes Abort Async" library="EyesLibrary">
+<tag>Check flow</tag>
+<doc>Stops execution without calling close().
+This method does all the cleanup normally done by close.
+If this method is called, and close has not been called, then the test will
+have a status of Aborted in the Test Manager.</doc>
+<status status="PASS" starttime="20220726 23:56:32.609" endtime="20220726 23:56:32.610"/>
+</kw>
+<status status="PASS" starttime="20220726 23:56:32.364" endtime="20220726 23:56:32.610"/>
+</kw>
+<status status="PASS" starttime="20220726 23:55:59.828" endtime="20220726 23:56:32.610"/>
+</test>
+<status status="PASS" starttime="20220726 23:55:58.707" endtime="20220726 23:56:32.612"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Activity Solution">Activity Solution</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20220726 23:55:59.205" level="WARN">No `config` set. Trying to find `applitools.yaml` in current path</msg>
+<msg timestamp="20220726 23:56:32.614" level="WARN">Run `Eyes Get All Test Results` keyword in `Suite Teardown` explicitly to see all output logs</msg>
+<msg timestamp="20220726 23:58:06.407" level="ERROR">Error in library 'EyesLibrary': Calling method 'close' of listener 'LibraryListener' failed: WebSocketConnectionClosedException: Connection is already closed.</msg>
+</errors>
+</robot>
