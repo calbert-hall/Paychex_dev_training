@@ -29,3 +29,12 @@ For additional info, see our official documentation here: https://applitools.com
 7. Implement a *coded region* in one of your `eyes.check` calls. 
 8. Navigate through the tabs on the company details page, and use eyes.check to capture these pages as well. 
 9. If you still have time, ask Casey for any additional tasks. 
+
+Troubleshooting
+
+- Try toggling the HEADLESS setting at the top of the file. This tells chromedriver whether to run in headless mode. 
+  This can be useful if you get errors related to viewport size. 
+- If you don't get perfect results initially, try running again. Oftentimes once the initial process is cached, the 
+testing goes more quicky and effectively.
+  
+- If you're still not seeing everything load and are seeing selector related messages, increase the EXPLICIT_WAIT_TIME. 

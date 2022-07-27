@@ -32,11 +32,12 @@ password = "Test1234"
 HEADLESS = True
 ENV_URL = "https://myappsimpn.paychex.com/"
 
+EXPLICIT_WAIT_TIME = 10
 
 # Useful selectors
 
 def explicitWait(selector, web_driver):
-    waitSeconds = 10
+    waitSeconds = EXPLICIT_WAIT_TIME
     try:
         wait = WebDriverWait(web_driver, waitSeconds)
         wait.until(ec.visibility_of_element_located((By.CSS_SELECTOR, selector)))
@@ -44,11 +45,9 @@ def explicitWait(selector, web_driver):
         print("\nSelector '%s' did not load in '%s' seconds...\n" % (selector, waitSeconds))
 
 
+# This handles the login workflow to prepare for eyes capture of the Application
 def login(web_driver, eyes):
     try:
-        # Navigate to the url we want to test
-        # web_driver.get("https://myappsimpn.paychex.com/")
-        # wait = WebDriverWait(web_driver, 10)
         web_driver.switch_to.frame("login")
         usernameField = web_driver.find_element_by_id("USER")
         usernameField.send_keys(username)
@@ -75,7 +74,8 @@ def login(web_driver, eyes):
             "#appPlaceHolder > div > div > div > div > form > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > button:nth-child(2)").click()
         web_driver.switch_to_default_content()
 
-        # this one fails
+        print("Waiting for page load....")
+        time.sleep(10)
         explicitWait(
             "#subapp-container > div.angular-subapp-wrapper.loaded > div > div > div > div > png-unified-header > div > div.flex-container > section.unified-header-information > unified-header-information > png-header-information > div > header > div.png-header-title-content > h4 > span",
             web_driver)
@@ -89,6 +89,11 @@ def login(web_driver, eyes):
         web_driver.execute_script(
             "document.querySelector('#main-content > fab-icon > message-indicator > png-badge > ng-transclude > ng-transclude > div').style.visibility = 'hidden';",
             web_driver)
+
+        explicitWait(".current-payroll-header-container", web_driver)
+        explicitWait("md-icon[aria-label='empty_beach']", web_driver)
+        explicitWait(".contact-detail-content", web_driver)
+
         print("Login Complete")
     except Exception as e:
         # eyes.abort_async()
@@ -103,13 +108,13 @@ def set_up(runner):
     eyes.configure.set_api_key(os.environ["APPLITOOLS_API_KEY"])
 
     # create a new batch info instance and set it to the configuration
-    eyes.configure.set_batch(BatchInfo("Hackathon Batch - Python"))
+    eyes.configure.set_batch(BatchInfo("Dev Training Module - Python"))
     eyes.configure.set_layout_breakpoints(True)
 
     # TODO ensure this is uncommented
     eyes.configure.set_server_url("https://service-outbound-par.paychex.com/pxt-applitools")
-    # Add browsers with different viewports
-    # Add mobile emulation devices in Portrait mode
+
+    #Adjust UFG devices, browsers and viewports here
     (
         eyes.configure.add_browser(1000, 800, BrowserType.CHROME),
         eyes.configure.add_browser(1024, 768, BrowserType.FIREFOX),
@@ -136,7 +141,7 @@ def goToCompanyDetails(web_driver):
         )
         link.click()
         explicitWait(
-            "#paychex\.app\.company\.profile > div > div.png-error-transclude.full-height > div > div > div.right-column > png-card > div > header > div.png-card-trigger-wrapper", web_driver)
+            "#paychex.app.company.profile > div > div.png-error-transclude.full-height > div > div > div.right-column > png-card > div > header > div.png-card-trigger-wrapper", web_driver)
     except Exception as e:
         print(e)
 
@@ -156,9 +161,12 @@ def runner_setup():
 def driver_setup():
     chrome_options = Options()
     chrome_options.headless = HEADLESS
+    chrome_options.add_argument("--disable-gpu")
 
-    # Create a new chrome web driver
-    web_driver = Chrome(ChromeDriverManager().install(), options=chrome_options)
+    web_driver = webdriver.Chrome(options=chrome_options)
+
+    # Alternate chrome driver creators
+    # web_driver = Chrome(ChromeDriverManager().install(), options=chrome_options)
     # Chrome(ChromeDriverManager(version="99.0.4844.51").install(), options=chrome_options)
 
     # This is just a setting that sets the time for waiting for elements to be 10s
@@ -179,17 +187,16 @@ def test_ultra_fast(web_driver, eyes):
         )
 
         login(web_driver, eyes)
-        print("Waiting for page load....")
-        time.sleep(10)
         print("Checking Main page....")
 
-        # TODO include eyes check here (hint, use Target.region("#appContainer")
+        # TODO include eyes check full page here (hint, use Target.region("#appContainer") and fully() )
 
         selectMenuButton(web_driver, eyes)
         goToCompanyDetails(web_driver)
         time.sleep(4)
 
         # TODO check App container
+
 
         eyes.close_async()
     except Exception as e:

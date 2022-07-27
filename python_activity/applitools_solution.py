@@ -29,14 +29,15 @@ username = "Applit465856618"
 password = "Test1234"
 
 # ChromeDriver Headless Mode
-HEADLESS = True
+HEADLESS = False
 ENV_URL = "https://myappsimpn.paychex.com/"
 
+EXPLICIT_WAIT_TIME = 10
 
 # Useful selectors
 
 def explicitWait(selector, web_driver):
-    waitSeconds = 10
+    waitSeconds = EXPLICIT_WAIT_TIME
     try:
         wait = WebDriverWait(web_driver, waitSeconds)
         wait.until(ec.visibility_of_element_located((By.CSS_SELECTOR, selector)))
@@ -76,7 +77,8 @@ def login(web_driver, eyes):
             "#appPlaceHolder > div > div > div > div > form > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > button:nth-child(2)").click()
         web_driver.switch_to_default_content()
 
-        # this one fails
+        # we're running a sleep to ensure everything won't time out
+        time.sleep(10)
         explicitWait(
             "#subapp-container > div.angular-subapp-wrapper.loaded > div > div > div > div > png-unified-header > div > div.flex-container > section.unified-header-information > unified-header-information > png-header-information > div > header > div.png-header-title-content > h4 > span",
             web_driver)
@@ -86,10 +88,12 @@ def login(web_driver, eyes):
 
         explicitWait('#main-content > fab-icon > message-indicator > png-badge > ng-transclude > ng-transclude > div',
                      web_driver)
+        explicitWait(".current-payroll-header-container", web_driver)
+        explicitWait("md-icon[aria-label='empty_beach']", web_driver)
+        explicitWait(".contact-detail-content", web_driver)
         # Hide question mark button
-        web_driver.execute_script(
-            "document.querySelector('#main-content > fab-icon > message-indicator > png-badge > ng-transclude > ng-transclude > div').style.visibility = 'hidden';",
-            web_driver)
+        #web_driver.execute_script("document.querySelector('#main-content > fab-icon > message-indicator > png-badge > ng-transclude > ng-transclude > div').style.visibility = 'hidden';")
+
         print("Login Complete")
     except Exception as e:
         # eyes.abort_async()
@@ -107,8 +111,8 @@ def set_up(runner):
     eyes.configure.set_layout_breakpoints(True)
 
     #TODO uncomment
-    # eyes.configure.set_server_url("https://paychexeyes.applitools.com/")
     # eyes.configure.set_server_url("https://service-outbound-par.paychex.com/pxt-applitools")
+    # eyes.configure.set_server_url("https://paychexeyes.applitools.com/")
 
     # Add browsers with different viewports
     # Add mobile emulation devices in Portrait mode
@@ -138,7 +142,7 @@ def goToCompanyDetails(web_driver):
         )
         link.click()
         explicitWait(
-            "#paychex\.app\.company\.profile > div > div.png-error-transclude.full-height > div > div > div.right-column > png-card > div > header > div.png-card-trigger-wrapper", web_driver)
+            "#paychex.app.company.profile > div > div.png-error-transclude.full-height > div > div > div.right-column > png-card > div > header > div.png-card-trigger-wrapper", web_driver)
     except Exception as e:
         print(e)
 
@@ -161,7 +165,10 @@ def driver_setup():
     chrome_options.add_argument("--disable-gpu")
 
     # Create a new chrome web driver
-    web_driver = Chrome(ChromeDriverManager().install(), options=chrome_options)
+    web_driver = webdriver.Chrome(chrome_options=chrome_options)
+
+    # Alternate Chromedriver installation methods.
+    # web_driver = Chrome(ChromeDriverManager().install(), options=chrome_options)
     # Chrome(ChromeDriverManager(version="99.0.4844.51").install(), options=chrome_options)
 
     # This is just a setting that sets the time for waiting for elements to be 10s
@@ -186,8 +193,8 @@ def test_ultra_fast(web_driver, eyes):
         print("Login workflow...")
         login(web_driver, eyes)
         print("Wait....")
-        time.sleep(10)
-        explicitWait(".current-payroll-header-container", web_driver)
+
+
         print("Checking Main page....")
 
         eyes.check("Dashboard Region",
