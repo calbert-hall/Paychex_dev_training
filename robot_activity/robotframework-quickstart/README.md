@@ -14,11 +14,13 @@
 3. Run example script: `python3 -m robot web.robot`
 
 
-## Dev Training Activity
-- See the Readme instructions in the python activity. note that you'll be working in the applitools_activity.robot file. 
+# Dev Training Activity
+- See the Readme instructions in the python activity or the general instructions. Note that you'll be working in the applitools_activity.robot file. 
 - For hints at the solution, see activity_solution.robot. 
 
 
+</br>
+</br>
 ## Robot Framework autocompletion plugins
 **IntelliJ (PyCharm and friends)** *Recommended - most full support*
 https://plugins.jetbrains.com/plugin/17424-intellibot-patched

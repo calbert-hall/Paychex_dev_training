@@ -41,4 +41,18 @@ mvn test
 
 # Paychex Dev Training Module
 - See above to run the sample project to ensure you're set up correctly
-- See TODOs and further directions in the Python readme
+- See TODOs and further directions in the General readme
+- If you have extra time, try designing an eyes wrapper function or look to try to structure the code in a more scalable
+framework. 
+
+
+### Troubleshooting
+
+- Try toggling the HEADLESS setting at the top of the file. This tells chromedriver whether to run in headless mode.
+  This can be useful if you get errors related to viewport size.
+- If you don't get perfect results initially, try running again. Oftentimes once the initial process is cached, the
+  testing goes more quicky and effectively.
+
+- If you're still not seeing everything load and are seeing selector related messages, increase the EXPLICIT_WAIT_TIME.
+
+
