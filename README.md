@@ -12,6 +12,7 @@
  6. Place an Ignore region on the "Company Logo" portion of the company details page.
  7. Implement a *coded region* in one of your `eyes.check` calls.
  8. Navigate through the tabs on the company details page, and use eyes.check to capture these pages as well.
+ 9. Move on to the ImageTester activity. 
  9. If you still have time, ask Casey for any additional tasks.
 
  *Troubleshooting*
