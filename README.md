@@ -1,6 +1,10 @@
 # Paychex Dev Training Module - Applitools Activity
 
 ### See individual project Readme files for instructions specific to each SDK. 
+
+Prerequisites: have python/java installed in your environment. 
+You can also set your APPLITOOLS_API_KEY as an [environment variable](https://docs.oracle.com/en/database/oracle/machine-learning/oml4r/1.5.1/oread/creating-and-modifying-environment-variables-on-windows.html) for addional ease of use. If not you can instead hardcode this into each project. 
+
 ### General Instructions 
 
  1. Open applitools_activity and set the API key and batch name as in steps 2 and 3 from #2.

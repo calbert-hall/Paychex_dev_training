@@ -29,10 +29,10 @@ username = "Applit465856618"
 password = "Test1234"
 
 # ChromeDriver Headless Mode
-HEADLESS = False
+HEADLESS = False # Recommend setting to True
 ENV_URL = "https://myappsimpn.paychex.com/"
 
-EXPLICIT_WAIT_TIME = 10
+EXPLICIT_WAIT_TIME = 20
 
 # Useful selectors
 

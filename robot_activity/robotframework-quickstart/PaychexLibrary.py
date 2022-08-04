@@ -39,7 +39,7 @@ class PaychexLibrary:
         return BuiltIn().get_library_instance('SeleniumLibrary').driver
 
     def explicitWait(self, selector, web_driver):
-        waitSeconds = 10
+        waitSeconds = 20
         try:
             wait = WebDriverWait(web_driver, waitSeconds)
             wait.until(ec.visibility_of_element_located((By.CSS_SELECTOR, selector)))
